@@ -46,9 +46,13 @@ class BackgroundCollectingTask extends Model {
       print("Byte buffer length is $length with offset of $offset");
 
       //TODO adding dummy integer for now, will be updated with parser
-      _buffer +=  new List.from([1,1,1,1]);
+      //_buffer +=  new List.from([1,1,1,1]);
+      _buffer += data;
+      int bufferSize = _buffer.length;
+      print("Buffer size is $bufferSize");
 
-      while (true) {
+      //while (true) {
+       // print("inside..");
         // If there is a sample, and it is full sent
 
 
@@ -58,12 +62,13 @@ class BackgroundCollectingTask extends Model {
 
           samples.add(sample);
           notifyListeners(); // Note: It shouldn't be invoked very often - in this example data comes at every second, but if there would be more data, it should update (including repaint of graphs) in some fixed interval instead of after every sample.
-
+        print("going out..");
 
         // Otherwise break
 
       }
-    }).onDone(() {
+    //}
+    ).onDone(() {
       inProgress = false;
       notifyListeners();
     });
