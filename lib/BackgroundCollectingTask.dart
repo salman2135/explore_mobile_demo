@@ -45,27 +45,17 @@ class BackgroundCollectingTask extends Model {
       //print(byteBuffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
       print("Byte buffer length is $length with offset of $offset");
 
-      //TODO adding dummy integer for now, will be updated with parser
-      //_buffer +=  new List.from([1,1,1,1]);
+      //TODO adding parsed data to the sample class
       _buffer += data;
       int bufferSize = _buffer.length;
       print("Buffer size is $bufferSize");
 
-      //while (true) {
-       // print("inside..");
-        // If there is a sample, and it is full sent
+      final DataSample sample = DataSample(textData: "Dummy Data", timestamp: DateTime.now());
 
-
-
-
-          final DataSample sample = DataSample(textData: "Dummy Data", timestamp: DateTime.now());
-
-          samples.add(sample);
-          notifyListeners(); // Note: It shouldn't be invoked very often - in this example data comes at every second, but if there would be more data, it should update (including repaint of graphs) in some fixed interval instead of after every sample.
-        print("going out..");
-
+      samples.add(sample);
+      notifyListeners(); // Note: It shouldn't be invoked very often - in this example data comes at every second, but if there would be more data, it should update (including repaint of graphs) in some fixed interval instead of after every sample.
+      print("going out..");
         // Otherwise break
-
       }
     //}
     ).onDone(() {
